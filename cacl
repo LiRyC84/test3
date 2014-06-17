@@ -1,0 +1,5 @@
+#!/bin/bash 
+
+./app/console ca:cl
+chmod -R 777 app/cache app/logs
+

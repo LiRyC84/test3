@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Liste des utilisateurs</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Mot de passe</th>
+                <th>Date de naissance</th>
+                <th>Sexe</th>
+                <th>Ville</th>
+                <th>Niveau</th>
+                <th>Points totaux</th>
+                <th>Points Temporaires</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenom }}</td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.password }}</td>
+                <td>{% if entity.birth %}{{ entity.birth|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ entity.sexe }}</td>
+                <td>{{ entity.ville }}</td>
+                <td>{{ entity.level }}</td>
+                <td>{{ entity.totalPoint }}</td>
+                <td>{{ entity.tempPoint }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_user_show', { 'id': entity.id }) }}">Détails</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_user_edit', { 'id': entity.id }) }}">Modifier</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_user_new') }}">
+                Créer un nouvel utilisateur
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

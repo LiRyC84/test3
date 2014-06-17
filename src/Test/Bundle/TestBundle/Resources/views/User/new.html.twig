@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Création d'un nouvel utilisateur</h1>
+
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('admin_user') }}">
+            Annuler et retourner à la liste
+        </a>
+    </li>
+</ul>
+{% endblock %}
